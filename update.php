@@ -1,26 +1,29 @@
 <?php
-include "koneksi.php";
-$koneksiObj = new Koneksi();
-$koneksi = $koneksiObj->getKoneksi();
 
-if($koneksi->connect_error){
-    echo "Gagal koneksi : " . $koneksi->connect_error;
-} else{
-    echo "Sambungan basis data berhasil";
+
+include "koneksi.php";
+
+$konkesiObj = new Koneksi();
+$koneksi = $konkesiObj->getKoneksi();
+        
+$kode = $_POST['kode'];
+$nama = $_POST['namaBarang'];
+$stok = $_POST['stok'];
+
+if($koneksi->connect_error) {
+    echo "Gagal Koneksi : " . $koneksi->connect_error;
 }
 
-$nim = $_POST['nim'];
-$nama = $_POST['nama'];
-$jurusan = $_POST['jurusan'];
+$query = "update stok_barang set nama_barang='$nama', stok='$stok' where kode='$kode'";
 
-$query = "update data_mahasiswa set nama='$nama', jurusan='$jurusan' where nim='$nim'";
-echo $query;
-if($koneksi->query($query) === true){
-    echo "<br> Data " . $_POST["nama"] . " berhasil disimpan. ".
-            ' <a href="main.php">Lihat Data</a>';
- } else {
-    echo "<br> Data GAGAL disimpan";
-        }
-        
-$koneksi->close();
+if($koneksi->query($query)===true){
+    echo "<br>Data ". $nama .' berhasil diupdate';
+} else{
+    echo "<br> Data gagal diupdate";
+    
+}
+echo "<br>";
+echo "<a href='main.php'>Kembali ke Halaman Utama</a>";
+
+
 ?>
