@@ -2,8 +2,8 @@ language: php
 
 env:
   global:
-    - 'FTP_USER=azizah03'
-    - 'FTP_PASS=alfatih04'
+    - 'FTP_USER=wahyuningsih-amalia'
+    - 'FTP_PASS=wahyuningsih'
 
 script:
 - "curl -u $FTP_USER:$FTP_PASSWORD ftp://files.000webhost.com -Q 'mkd public_html/praktek-4c'"
